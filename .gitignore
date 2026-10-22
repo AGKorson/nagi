@@ -13,7 +13,9 @@ config.log
 bin/nagi
 bin/x86
 bin/x64
-
+Backup\
+debug\
+Debug.TMP\
 # visual studio cmake support defaults to out/
 .vs
 out
