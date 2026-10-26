@@ -16,6 +16,7 @@ bin/x64
 Backup\
 debug\
 Debug.TMP\
+dist\
 # visual studio cmake support defaults to out/
 .vs
 out
