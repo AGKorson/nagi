@@ -3,7 +3,23 @@
 **By Nick Sonneveld**
 
 
-### Introduction
+## WinAGI Integration Updates
+
+This fork of NAGI includes updates that are specifically designed to work with the [WinAGI Game Development System][7]. It also includes a few minor improvements and enhancements.
+
+Updates included in this fork include:
+
+  * Extended Character Support: modified the character display handler to allow display of extended characters. This requires modified NAGI font files (*.nbf) that include extended character glyphs. This fork includes new font files that include all characters. Use fonts_bitmap property of the [vid] section in the nagi.ini file to change the font files that NAGI will use.
+
+  * Custom Palette Support: modified the graphics setup function to allow use of a custom palette (overriding the default colors used in AGI). 
+  
+  * fixed shake.screen command to more closely mirror actual Sierra behavior
+  
+  * changed application close method to automatically close instead of showing AGI quit message (for example, when clicking the close 'X' button window titlebar)
+
+  * implemented command obj.status.v (debug command that shows a screen object's parameters)
+  
+## Introduction
 
 This is the public release of the NAGI source code.
 
@@ -23,14 +39,14 @@ The current source release supports Linux and some some minor bug fixes!
 Check it out!
 
 
-### Current Developers:
+## Current Developers:
 
   * [Nick Sonneveld][1] - Original author
   * [Gareth McMullin][2] - Linux port and tweaking
   * [Claudio Matsuoka][3] - has pledged to support the project.
   * [Ritchie Swann][4] - OS X port, upgrade to SDL2 and various improvements
 
-### License
+## License
 
 NAGI's source has been released under the X11 license.  This means you can use
 the source in any project you want and you do not have to provide the source
@@ -42,13 +58,13 @@ The X11 license has been deemed to be [compatible with the GPL license][5].
 For the full license, check out of the bottom of this page.
 
 
-###  Systems Supported
+##  Systems Supported
 
   * Windows - NAGI was originally written for Windows using the SDL Library
   * Linux - a new version, ported by Gareth McMullin
 
 
-### Build Requirements
+## Build Requirements
 
 In order to successfully build NAGI from the provided source code, you will
 need a suitable toolchain and a suitable SDL2 library.
@@ -57,7 +73,7 @@ Windows - MinGW / MSYS (www.mingw.org/wiki/msys) provides a suitable toolset
 MacOS - use MacPorts (www.macports.org)
 Linux - most distributions have some way of getting SDL2 installed. See below
 
-### How to Build (Linux/Macos)
+## How to Build (Linux/Macos)
 
  * Arch Linux, MinGW : sudo pacman -S libsdl2-dev cmake
  * Debian Linux : sudo apt-get install libsdl2-dev cmake
@@ -65,22 +81,33 @@ Linux - most distributions have some way of getting SDL2 installed. See below
 
 Then : mkdir build ; cd build; cmake .. ; make
 
-### How to Build (Windows)
+## How to Build (Windows)
+### Prerequisites
+ * Visual Studio 2026 Community (or later)
+ * Desktop development with C++ workload installed
+ * SDL2 development libraries
 
- * Install Visual Studio 2019 Community
- * Download SDL2-devel-2.0.14-VC.zip from https://www.libsdl.org/download-2.0.php
- * Decompress SDL2-devel-2.0.14-VC.zip into a directory
- * Add support/sdl2-config.cmake to SDL directory
- * Open nagi directory in Visual Studio as a cmake project
- * Go to Project/CMake Settings for NAGI. Set variable SDL2_DIR to SDL location
- * Build!
+### Setup
+ 1. Download the SDL2 development package from the SDL website.
+ 2. Extract the SDL2 package to a convenient location.
+ 3. Open the NAGI root folder in Visual Studio:
+        File → Open → Folder
+    Select the folder containing the top-level CMakeLists.txt.
+ 4. Allow Visual Studio to configure the CMake project.
+ 5. Configure the SDL2 location if required by your local setup. If Visual Studio cannot locate SDL2 automatically, set the appropriate CMake variable(s) to point to your SDL2 installation.
+ 6. Build the project:
+        Build → Build All
 
-### Suggestions
+### Troubleshooting
+If Visual Studio opens the project as a simple folder and no build targets appear:
+        Project → Delete Cache and Reconfigure
+This forces Visual Studio to regenerate the CMake configuration and usually resolves startup target and build issues.
+
+## Suggestions
 
 These are some things that I planned to work on:
 
-  * New save game format to make it less fragile and compatible across other
-free interpreters
+  * New save game format to make it less fragile and compatible across other free interpreters
   * Save menu, controller and thumbnail info in save games
   * Font scaling
   * Clean sound code
@@ -99,8 +126,7 @@ free interpreters
   * 256 colour / palette hacks
   * support for Amiga mouse commands
   * support for AGInfo's game checksum list
-  * support early interpreter's sprite handling (fix Donald Duck, AGI Trek,
-Xmas demo sprite glitches)
+  * support early interpreter's sprite handling (fix Donald Duck, AGI Trek, Xmas demo sprite glitches)
   * transition screen fades between new rooms
   * fix windib support (SDL problem?)
   * joystick support
@@ -109,7 +135,7 @@ Xmas demo sprite glitches)
 Hopefully that will give you some ideas if you want to hack NAGI.
 
 
-### Disassembled Code
+## Disassembled Code
 
 Also in another package are files I used for disassembling NAGI.  Some code,
 before I started writing straight into C, is available here along with files
@@ -122,20 +148,20 @@ proper C and how to read assembler from this project so my initial guesses may
 be wrong.
 
 
-### Support
+## Support
 
 Send me any emails if you want more information on NAGI or how the source code
 fits together.  As long as it doesn't get too demanding, I won't mind
 answering any questions.
 
 
-### X11 License
+## X11 License
 
 The license in full: (applies to all source code)
 
     COPYRIGHT AND PERMISSION NOTICE
 
-    Copyright (c) 2001 - 2017 Nick Sonneveld, Gareth McMullin, Ritchie Swann
+    Copyright (c) 2001 - 2026 Nick Sonneveld, Gareth McMullin, Ritchie Swann, Andrew Korson
 
     All rights reserved.
 
@@ -181,3 +207,4 @@ The license in full: (applies to all source code)
 
    [6]: mailto:sonneveld.at.hotmail.com
 
+   [7]: https://github.com/AGKorson/WinAGI-GDS

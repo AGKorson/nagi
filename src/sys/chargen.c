@@ -149,7 +149,6 @@ static void font_load(FILE *font_stream)
 	if (font_stream == 0)
 	{
 		printf("font_init(): Unable to find appropriate font for current resolution.\n");
-		// TODO: this breaks sndgen which hasn't initialised yet
 		agi_exit();
 	}
 
@@ -160,15 +159,17 @@ static void font_load(FILE *font_stream)
 	font_chsize = fgetc(font_stream);
 	font_linesize = font_chsize / font_size.h;
 
-	font_data = a_malloc(128 * font_chsize);
-	memset(font_data, 0, 128 * font_chsize);
+	// space for all 256 character glyphs
+	font_data = a_malloc(256 * font_chsize);
+	memset(font_data, 0, 256 * font_chsize);
 	font_work = a_malloc(font_chsize);
 	memset(font_work, 0, font_chsize);
 
 	ch = fgetc(font_stream);
-	while (ch != 0xFF)
+	// change test to check for end of file or reaching byte value 0xFF
+	while (feof(font_stream) == 0x00 && ch != 0xFF)
 	{
-		fread(&font_data[font_chsize*ch], font_chsize, 1, font_stream);
+		fread(&font_data[font_chsize * ch], font_chsize, 1, font_stream);
 		ch = fgetc(font_stream);
 	}
 }

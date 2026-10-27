@@ -174,7 +174,7 @@ typedef int32_t		s32;
 // reversed cycle
 #define CY_REV		3
 
-#define NAGI_VERSION "v2.07 beta"
+#define NAGI_VERSION "v2.08"
 
 
 struct position_struct
@@ -474,6 +474,7 @@ extern CONF_BOOL c_snd_read_var;
 extern CONF_INT c_snd_volume;
 extern CONF_STRING c_sdl_drv_video;
 extern CONF_STRING c_sdl_drv_sound;
+extern CONF_STRING c_palette_colour[];
 
 extern CONF_STRING c_standard_crc_list;
 extern CONF_STRING c_standard_agi_list;

@@ -30,6 +30,7 @@ CONF_BOOL c_snd_read_var = 0;
 CONF_INT c_snd_volume = 0x7FFF;
 CONF_STRING c_sdl_drv_video = 0;
 CONF_STRING c_sdl_drv_sound = 0;
+CONF_STRING c_palette_colour[] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
 
 CONF_STRING c_standard_crc_list = 0;
 CONF_STRING c_standard_agi_list = 0;
@@ -81,6 +82,22 @@ CONF config_nagi[] =
 	{"volume", 0, CT_INT, .i = {&c_snd_volume, 0x7FFF, 0, 0x7FFF} },
 	{"drv_video", "sdl", CT_STRING, .s = {&c_sdl_drv_video, ""} },
 	{"drv_sound", 0, CT_STRING, .s = {&c_sdl_drv_sound, ""} },
+	{"colour0", "palette", CT_STRING, .s = { &c_palette_colour[0], "0x00,0x00,0x00" } },
+	{"colour1", 0, CT_STRING, .s = { &c_palette_colour[1], "0x00,0x00,0xAA" } },
+	{"colour2", 0, CT_STRING, .s = { &c_palette_colour[2], "0x00,0xAA,0x00" } },
+	{"colour3", 0, CT_STRING, .s = { &c_palette_colour[3], "0x00,0xAA,0xAA" } },
+	{"colour4", 0, CT_STRING, .s = { &c_palette_colour[4], "0xAA,0x00,0x00" } },
+	{"colour5", 0, CT_STRING, .s = { &c_palette_colour[5], "0xAA,0x00,0xAA" } },
+	{"colour6", 0, CT_STRING, .s = { &c_palette_colour[6], "0xAA,0x55,0x00" } },
+	{"colour7", 0, CT_STRING, .s = { &c_palette_colour[7], "0xAA,0xAA,0xAA" } },
+	{"colour8", 0, CT_STRING, .s = { &c_palette_colour[8], "0x55,0x55,0x55" } },
+	{"colour9", 0, CT_STRING, .s = { &c_palette_colour[9], "0x55,0x55,0xFF" } },
+	{"colour10", 0, CT_STRING, .s = { &c_palette_colour[10], "0x55,0xFF,0x55" } },
+	{"colour11", 0, CT_STRING, .s = { &c_palette_colour[11], "0x55,0xFF,0xFF" } },
+	{"colour12", 0, CT_STRING, .s = { &c_palette_colour[12], "0xFF,0x55,0x55" } },
+	{"colour13", 0, CT_STRING, .s = { &c_palette_colour[13], "0xFF,0xAA,0xAA" } },
+	{"colour14", 0, CT_STRING, .s = { &c_palette_colour[14], "0xFF,0xFF,0x55" } },
+	{"colour15", 0, CT_STRING, .s = { &c_palette_colour[15], "0xFF,0xFF,0xFF" } },
 	{.key = 0}
 };
 

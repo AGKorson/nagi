@@ -12,16 +12,52 @@ CmdVersion                       cseg     00007670 00000016
 #include "sys/drv_video.h"
 #include "sys/gfx.h"
 
+#include "view/obj_base.h"
+
+u8 *cmd_obj_status_v(u8 *c) {
+	char msg[256];
+	u8 objnum = state.var[*(c++)];
+	VIEW* v;
+	v = &objtable[objnum];
+
+	if (v >= objtable_tail) {
+		// agi doesn't catch invalid objects and will
+		// display meaningless data; we display all -1s
+		snprintf(msg, sizeof(msg),
+			"Object %d:\n"
+			"x: %d  xsize: %d\n"
+			"y: %d  ysize: %d\n"
+			"pri: %d\n"
+			"stepsize: %d",
+			objnum,
+			-1, -1,
+			-1, -1,
+			-1,
+			-1);
+	}
+	else {
+		snprintf(msg, sizeof(msg),
+			"Object %d:\n"
+			"x: %d  xsize: %d\n"
+			"y: %d  ysize: %d\n"
+			"pri: %d\n"
+			"stepsize: %d",
+			v->num,
+			v->x, v->x_size,
+			v->y, v->y_size,
+			v->priority,
+			v->step_size);
+	}
+	message_box(msg);
+	return c;
+}
+
 u8 *cmd_version(u8 *c)
 {
-	message_box("            NAGI\n" "     By Nick Sonneveld\n\n"
-		"A complete reimplementation of Sierra's AGI interpreter made "
-		"popular by games like Space Quest and Leisure Suit Larry.");	
-	message_box("Want to make your own AGI based game?\n\n" "Visit:\n"
-		"http://agidev.com/\n" "http://mega-tokyo.com/forum/\n");
-	
-	// TODO: add interpreter version type.
-	
+	message_box("             NAGI\n"
+		        "      By Nick Sonneveld\n\n"
+		        "  Reimplements Sierra's AGI");
+	message_box(*config_game[0].s.ptr);
 	return c;
 }
 

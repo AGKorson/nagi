@@ -6,8 +6,8 @@ endif()
 set(CMAKE_OSX_DEPLOYMENT_TARGET "10.9" CACHE STRING "Minimum OS X deployment version")
 
 project(NAGI
-    VERSION "2.0.7"
-    DESCRIPTION "New Adventure Game Interpreter"
+    VERSION "2.0.8"
+    DESCRIPTION "New Adventure Game Interpreter with WinAGI Integration"
     LANGUAGES C
 )
 

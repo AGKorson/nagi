@@ -38,5 +38,6 @@ extern void gfx_palette_update(void);
 extern void gfx_clear(void);
 extern void gfx_picbuff_update(void);
 extern void gfx_reinit(void);
+extern void gfx_palette_init(void); // to support custom colour palettes
 
 #endif /* NAGI_SYS_GFX_H */

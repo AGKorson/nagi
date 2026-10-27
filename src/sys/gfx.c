@@ -305,3 +305,51 @@ void gfx_picbuff_update(void)
 	render_update(0, 167, 160, 168);
 }
 
+
+// support colour palette changes
+void gfx_palette_init(void)
+{
+	u16 i;
+	u16 r, g, b;
+	char* commapos1, * commapos2;
+
+	for (i = 0; i < 16; i++)
+	{
+		// colour string should be in format '0x00,0x00,0x00'
+		for (;;)
+		{
+			// get red value   c_palette_colour[i]
+			r = strtoul(c_palette_colour[i], &commapos1, 16);
+			//if not a valid hexadecimal number,
+			if (commapos1 == c_palette_colour[i])
+			{
+				printf("colour %d red is invalid...\n", i);
+				break;
+			}
+
+			// get green value
+			g = strtoul(commapos1 + 1, &commapos2, 16);
+			//if not a valid hexadecimal number,
+			if (commapos2 == commapos1 + 1)
+			{
+				printf("colour %d green is invalid...\n", i);
+				break;
+			}
+
+			// get blue value
+			b = strtoul(commapos2 + 1, &commapos1, 16);
+			//if not a valid hexadecimal number,
+			if (commapos1 == commapos2 + 1)
+			{
+				printf("colour %d blue is invalid...\n", i);
+				break;
+			}
+
+			// valid colour passed; set it...
+			ega_palette[i].r = r;
+			ega_palette[i].g = g;
+			ega_palette[i].b = b;
+			break;
+		}
+	}
+}

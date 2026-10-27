@@ -171,7 +171,8 @@ void sndgen_stop(void)
 		tone_lock();
 		sndgen_kill_thread();
 		tone_unlock();
-	}}
+	}
+}
 
 
 

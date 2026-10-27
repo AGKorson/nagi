@@ -357,7 +357,9 @@ AGI_EVENT *event_read(void)
 				break;
 
 			case SDL_QUIT:
-				cmd_quit(&c);
+				// quit immediately, don't ask user
+				agi_exit();
+				//cmd_quit(&c);
 				break;
 
 			case SDL_WINDOWEVENT:
@@ -369,7 +371,9 @@ AGI_EVENT *event_read(void)
 					case SDL_WINDOWEVENT_CLOSE:
 						window = vid_get_main_window();
 						if(SDL_GetWindowID(window) == event.window.windowID){
-							cmd_quit(&c);
+							// quit immediately, don't ask user
+							agi_exit();
+							//cmd_quit(&c);
 						}
 						break;
 				}

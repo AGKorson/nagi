@@ -283,7 +283,7 @@ FUNC cmd_table[CMD_MAX + 1] = {
 			{"cmd.random", cmd_random, 3, 0x20},
 			{"cmd.program.control", cmd_program_control, 0, 0},
 			{"cmd.player.control", cmd_player_control, 0, 0},
-			{"cmd.obj.status.v (incomplete)", cmd_do_nothing, 1, 0x80},
+			{"cmd.obj.status.v", cmd_obj_status_v, 1, 0x80},
 			{"cmd.quit", cmd_quit, 1, 0},
 			{"cmd.show.mem (incomplete)", cmd_do_nothing, 0, 0},
 			{"cmd.pause", cmd_pause, 0, 0},

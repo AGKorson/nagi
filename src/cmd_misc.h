@@ -1,6 +1,7 @@
 #ifndef NAGI_CMD_MISC_H
 #define NAGI_CMD_MISC_H
 
+extern u8 * cmd_obj_status_v(u8 *c);
 extern u8 *cmd_version(u8 *c);
 extern u8 *cmd_shake_screen(u8 *c);
 

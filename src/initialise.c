@@ -111,6 +111,9 @@ void nagi_init()
 	config_load(config_nagi, ini_nagi);
 	ini_close(ini_nagi);
 
+	//initialize colour palette
+	gfx_palette_init();
+
 	// for the console window thingy
 #ifdef  _WIN32
 	if (c_nagi_console)
@@ -122,11 +125,11 @@ void nagi_init()
 #endif
 
 	printf("New Adventure Game Interpreter (NAGI) %s\n", NAGI_VERSION);
-	printf("Copyright (C) 2000-2002 Nick Sonneveld & Gareth McMullin\n");
+	printf("Copyright (C) 2000-2026 Nick Sonneveld, Gareth McMullin, Andrew Korson\n");
 	printf("Author: Nick Sonneveld (sonneveld@hotmail.com)\n");
 	printf("Linux port by RaDIaT1oN (g_mcm@mweb.co.za)\n");
-	printf("SDL 2.0 port by Ritchie Swann (ritchieswann@gmail.com)\n\n");
-	
+	printf("SDL 2.0 port by Ritchie Swann (ritchieswann@gmail.com)\n");
+	printf("WinAGI Integration features by Andrew Korson (https://github.com/AGKorson/nagi)\n\n");
 	printf("Based upon the Adventure Game Interpreter (AGI) v2.917 and v3.002.149\n");
 	printf("Copyright (C) 1984-1988 Sierra On-Line, Inc.\n");
 	printf("Authors: Jeff Stephenson & Chris Iden\n\n");

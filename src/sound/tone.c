@@ -67,7 +67,10 @@ int tone_init(void)
 void tone_shutdown(void)
 {
 	// has to be able to shutdown even if it didn't init
-	tone_drv.ptr_shutdown();
+	if (tone_drv.ptr_shutdown)
+	{
+		tone_drv.ptr_shutdown();
+	}
 }
 
 // returns handle
@@ -84,7 +87,10 @@ void tone_close(int handle)
 
 void tone_state_set(int open_state)
 {
-	tone_drv.ptr_state_set(open_state);
+	if (tone_drv.ptr_state_set)
+	{
+		tone_drv.ptr_state_set(open_state);
+	}
 }
 
 int tone_state_get(void)
@@ -94,11 +100,16 @@ int tone_state_get(void)
 
 void tone_lock(void)
 {
-	tone_drv.ptr_lock();
+	if (tone_drv.ptr_lock) {
+		tone_drv.ptr_lock();
+	}
 }
 
 void tone_unlock(void)
 {
-	tone_drv.ptr_unlock();
+	if (tone_drv.ptr_unlock)
+	{
+		tone_drv.ptr_unlock();
+	}
 }
 

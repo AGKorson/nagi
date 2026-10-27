@@ -453,7 +453,8 @@ void vid_shake(int count)
 	memcpy (orig->format->palette->colors, surface->format->palette->colors, orig->format->palette->ncolors * sizeof (SDL_Color)) ;
 	
 	//      blit screen to new surface
-	if (SDL_BlitSurface(surface, 0, orig, 0)) goto shake_error;
+	if (SDL_BlitSurface(surface, 0, orig, 0))
+		goto shake_error;
 
 	count *= 8;
 	while (count--)
@@ -464,19 +465,26 @@ void vid_shake(int count)
 			goto shake_error;       
 		vid_unlock();
 
-		// print the surface in some strange location
-		dest.x = shake_offset[rand()%3];
-		dest.y = shake_offset[rand()%3];
+		// display the surface four AGI pixels down, four pixels right
+		// (there is not an explicit scale value, but it can be calculated from the
+		// overall surface h/w:
+		//   pixelW = surface.w / 160
+		//   pixelH = surface.h / 200
+		dest.x = 4 * surface->w / 160;
+		dest.y = 4 * surface->h / 200;
+
 		if (SDL_BlitSurface(orig, 0, surface, &dest)) // blit to some offset  stretch*10 or something
 			goto shake_error; 
 		vid_render(surface, 0, 0, 0, 0);
+		SDL_Delay(28);
 
-		SDL_Delay(50);
+		// put it back
+		// put the original screen back on
+		if (SDL_BlitSurface(orig, 0, surface, 0)) // update the screen
+			goto shake_error; 
+		vid_render(surface, 0, 0, 0, 0);
+		SDL_Delay(28);
 	}
-	// put the original screen back on
-	if (SDL_BlitSurface(orig, 0, surface, 0)) // update the screen
-		goto shake_error; 
-	vid_render(surface, 0, 0, 0, 0);
 	
 shake_error:
 	SDL_FreeSurface(orig);
